@@ -53,32 +53,32 @@
 | RO / EN / FR / DE interface | ✓ |
 | macOS + Windows + Linux | ✓ |
 
-### PRO
+### PRO — for individuals and small offices
 
-| Billing | Price |
-|---------|-------|
-| Monthly | €10 / month + VAT |
-| **Annual** | **€89 / year + VAT** *(save 26% vs monthly)* |
-| Perpetual | €169 one-time + VAT |
+| Billing | Price | |
+|---------|-------|-|
+| Monthly | €9.99 / month + VAT | |
+| **Annual** | **€89 / year + VAT** | save 26% vs monthly |
+| Perpetual | €169 one-time + VAT | pay once, use forever |
 
 **Everything in Free, plus:**
-- Full document preparation pipeline (all steps including remove last pages + append pages)
+- Full document preparation pipeline (all steps incl. remove last pages + append pages)
 - Bulk folder signing — unlimited documents
 - Unlimited signer profiles
 - Serial signing workflow
-- TSA timestamp configuration
 - All 9 PDF Tools
 - Utilities: stamp & handwritten signature extraction, selective ZIP
 - Three simultaneous activations: macOS + Windows + Linux
+- Local processing — no cloud
 - ChatBot / Email support
 
-### Server Edition
+### Server Edition — headless auto-signing
 
-| Billing | Price |
-|---------|-------|
-| Monthly | €50 / month + VAT |
-| **Annual** | **€499 / year + VAT** *(save 17% vs monthly)* |
-| Perpetual | €799 one-time + VAT |
+| Billing | Price | |
+|---------|-------|-|
+| Monthly | €49.99 / month + VAT | |
+| **Annual** | **€499 / year + VAT** | save 17% vs monthly |
+| Perpetual | €799 one-time + VAT | pay once, use forever |
 
 **Everything in Pro, plus:**
 - Issues internal .p12 certificates for signers
@@ -87,8 +87,6 @@
 - macOS (launchd) / Linux (systemd) / Windows (NSSM)
 - Signing log + audit report (PDF)
 - Per-organization license
-- Local processing — no cloud
-- ChatBot / Email support
 
 → [**Buy license — xignall.io**](https://xignall.io)
 
