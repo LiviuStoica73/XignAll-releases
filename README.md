@@ -35,7 +35,7 @@ Supported on **Windows 10/11**, **macOS** (Apple Silicon + Intel), and **Linux**
 | Documents leave the organization | Documents stay local |
 | Centralized workflow | Distributed workflow |
 | Browser-based | Native desktop / server app |
-| Limited batch operations | High-volume batch (20–60 docs/min) |
+| Limited batch operations | High-volume batch signing (about 200 documents in 100 seconds in our tests, hardware token) |
 | Vendor lock-in | Self-hosted, air-gapped compatible |
 
 ---
@@ -84,7 +84,7 @@ The **Prepare** tab processes source documents in bulk before signing.
 | **6. Trim last N pages (PDF)** | Removes the last N pages from each PDF |
 | **7. Append PDF page** | Inserts a `.pdf` page into each PDF at the **first page, last page, or a chosen page number** |
 
-All steps run in parallel with configurable worker threads. A run report is generated after each execution. Already-processed files are skipped on re-run.
+Preparation runs in parallel with configurable worker threads — **20 to 60 documents per minute** for the whole pipeline (example: doc → docx → delete pages → append the signature-table page → export to PDF). A run report is generated after each execution. Already-processed files are skipped on re-run.
 
 ---
 
@@ -94,7 +94,7 @@ The **Sign** tab applies visible digital signatures to entire folders of PDFs.
 
 **Signature capabilities:**
 - **Batch signing** — sign an entire folder (or recursive subfolders) in one operation
-- **20–60 documents per minute** depending on hardware and file size
+- **Sequential batch signing** — select a folder, click Sign and do nothing more; documents are signed one after another at the coordinates and on the pages you set, in a single token session. In our tests about **200 documents in 100 seconds** with a hardware token (depends on hardware and file size)
 - **Precise coordinate placement** — drag-and-drop on live PDF preview, saved per signer profile
 - **Visible signature appearance**: signer name, reason, location, date, logo image
 - **Multiple signer profiles** — switch between profiles in one click
@@ -338,7 +338,7 @@ In XignAll, the SEAL is applied at the end of a signing workflow, after all indi
 ## Use Cases
 
 ### Notary offices
-Batch-sign entire files of deeds and notarial acts. Each document receives a visible PAdES signature with the notary's name, stamp logo, and embedded timestamp — in parallel, 20–60 documents per minute.
+Batch-sign entire files of deeds and notarial acts. Each document receives a visible PAdES signature with the notary's name, stamp logo, and embedded timestamp — about 200 documents in 100 seconds in our tests (hardware token).
 
 ### Cadastral commissions
 Process land registry batches: convert from `.docx` to PDF, append the official seal page, sign with the commission's qualified certificate on a hardware token, all in one automated pipeline run.
