@@ -2,7 +2,7 @@
 
 **Prepare · Sign · Verify · Automate** — Desktop and server application for distributed electronic signing workflows. Qualified PAdES signatures, organizational SEAL automation, Telegram remote authorization, and batch document processing — entirely within your own infrastructure, without SaaS dependency.
 
-[![Download](https://img.shields.io/badge/Download-v1.3.1-blue?style=flat-square)](https://github.com/LiviuStoica73/XignAll-releases/releases)
+[![Download](https://img.shields.io/badge/Download-v1.3.8-blue?style=flat-square)](https://github.com/LiviuStoica73/XignAll-releases/releases)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=flat-square)]()
 [![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)]()
 
@@ -49,6 +49,8 @@ Supported on **Windows 10/11**, **macOS** (Apple Silicon + Intel), and **Linux**
   - [Signature Verification](#signature-verification)
   - [PDF Tools](#pdf-tools)
   - [Signature & Stamp Extractor](#signature--stamp-extractor)
+  - [Aria — built-in AI assistant](#aria--built-in-ai-assistant)
+  - [XignAll Rewards](#xignall-rewards--pro-license-for-unknown-tokens)
 - [Server Edition](#server-edition--folder-watch--seal--telegram)
   - [Folder Watch — Automatic signing](#folder-watch--automatic-signing)
   - [Telegram Bot — Remote signing](#telegram-bot--remote-signing)
@@ -74,13 +76,13 @@ The **Prepare** tab processes source documents in bulk before signing.
 
 | Step | Description |
 |------|-------------|
-| **1. Convert to DOCX** | Converts source files to `.docx` via LibreOffice or MS Word |
-| **2. Append DOCX page** | Appends a `.docx` page (e.g. signer list) to each document |
-| **3. Convert to PDF** | Converts `.docx` to final PDF |
-| **4. Append PDF page** | Appends a `.pdf` page to existing PDFs |
-| **5. Delete text from marker** | Removes all content from a specified text marker onward (bulk) |
-| **6. Trim last N pages (DOCX)** | Removes the last N pages from each `.docx` |
-| **7. Trim last N pages (PDF)** | Removes the last N pages from each PDF |
+| **1. Convert format** | Converts source files (`.doc`, `.odt`, `.rtf`, `.txt`, `.html`, spreadsheets…) to `.docx` via LibreOffice or MS Word |
+| **2. Delete from marker** | Removes all content from a specified text marker to the end of the document (bulk) |
+| **3. Trim last N pages (DOCX)** | Removes the last N pages from each `.docx` |
+| **4. Append DOCX page** | Appends a `.docx` page (e.g. the signer list) to each document |
+| **5. Convert to PDF** | Converts `.docx` to the final PDF |
+| **6. Trim last N pages (PDF)** | Removes the last N pages from each PDF |
+| **7. Append PDF page** | Inserts a `.pdf` page into each PDF at the **first page, last page, or a chosen page number** |
 
 All steps run in parallel with configurable worker threads. A run report is generated after each execution. Already-processed files are skipped on re-run.
 
@@ -100,6 +102,9 @@ The **Sign** tab applies visible digital signatures to entire folders of PDFs.
 - **Incremental signing** — signs documents that already have existing signatures without invalidating them
 - **TSA timestamp support** — embeds a trusted timestamp from any RFC 3161 server (e.g. DigiCert)
 - **Configurable appearance** — border width, which fields to display, logo position and scale
+- **Signature preview** — the position dialog can overlay a simulation of the visible signature (name from the token or certificate, reason, location, date, logo) on the page before you sign
+- **USB token found at startup** — the token is looked up in the background when the app starts, so it is already detected when you open the signing page
+- **Disk-space protection** — bulk signing warns before starting if the output folder may not have enough free space, and pauses with Retry / Cancel if the disk fills up mid-batch
 
 **Signature format:**
 - **PAdES** (PDF Advanced Electronic Signatures) — eIDAS-compliant, accepted across all EU member states
@@ -117,6 +122,7 @@ The **Workflow** tab orchestrates a signing chain across multiple signers.
 - **Absentee handling** — skip a signer and continue the chain
 - **SEAL at end of chain** — apply an organizational SEAL signature to certify the final signed document
 - **Signature table replacement** — insert a marker line in the document; XignAll removes and rebuilds the entire signature table in all documents of the batch automatically
+- **Import a workflow from another project** — reuse the signers, order and signature settings of an earlier project folder; statuses, history and output folders are reset, and paths from another computer or operating system are not carried over
 - **Shared-folder workflow transport** — workflow state synchronized through shared packages stored alongside the document batch; no server or API required
 
 ---
@@ -133,7 +139,7 @@ The **Verify** tab inspects digital signatures in any PDF.
 
 ### PDF Tools
 
-Nine built-in PDF processing tools, all working on batches of files.
+Fourteen built-in PDF processing tools, all working on batches of files (Merge and Split are available in the Free edition; the others require PRO).
 
 | Tool | Description |
 |------|-------------|
@@ -142,10 +148,15 @@ Nine built-in PDF processing tools, all working on batches of files.
 | **Rotate** | Rotate pages (90°, 180°, 270°) — all pages or specific page numbers |
 | **Watermark** | Add text or image watermark to all pages |
 | **Anonymize** | Auto-redact sensitive data using regex patterns |
-| **Extract Text** | Extract all text content from PDFs to `.txt` files |
+| **Extract Text** | Extract all text content from PDFs to `.txt` or `.md` files |
 | **Extract Images** | Extract all embedded images from PDFs |
 | **Edit Metadata** | View and edit PDF metadata (title, author, subject, keywords, producer) |
-| **Encrypt / Decrypt** | Password-protect PDFs with AES-128 encryption, or remove protection |
+| **Encrypt / Decrypt** | Password-protect PDFs with AES-256 encryption, or remove protection |
+| **Compress PDF** | Reduce each PDF below a target size in MB by recompressing images, with a before/after preview |
+| **Contrast / legibility** | Improve faint or grey scanned pages with Light / Medium / Strong presets and a page-1 preview; pages with native text are left untouched |
+| **Export pages as images** | Save each PDF page as a separate PNG or JPG at a configurable resolution |
+| **Insert PDF pages** | Insert a PDF as page(s) into other PDFs — first page, last page or page X — on a whole folder or a single file |
+| **PDF → DOCX** | Convert whole PDFs to editable DOCX (approximate layout; requires LibreOffice) |
 
 **Anonymization patterns (built-in):**
 Automatically detects and redacts: email addresses, IBAN numbers, phone numbers, Romanian CNP (personal ID), passport numbers, bank card numbers. Supports adding custom regex patterns. International and Romanian patterns included.
@@ -160,6 +171,21 @@ The **Tools** tab includes an image processing utility for creating electronic s
 - **Process**: removes the background automatically → outputs a transparent PNG
 - **Output**: ready-to-use as the logo image in a digital signature profile
 - Runs entirely offline — no external service required
+
+### Aria — built-in AI assistant
+
+**Aria** answers questions about XignAll, digital signatures, certificates and tokens — inside the app (sidebar) and on the website — in the language you use (10 languages). Answers are based on the XignAll documentation, and the sidebar shows whether Aria is online. It is available in every edition.
+
+- **Suggestions and bug reports** — send them to the XignAll team straight from the Aria window; delivery is confirmed only when the server actually accepted the message.
+- **Optional error reports** — when a technical error occurs, XignAll can offer to send a report. Nothing is sent without your consent: you see the exact content first, or you can switch on automatic sending (off by default). Reports contain technical data only — file paths, document names and certificate-holder names are removed, and no documents, PINs or token serial numbers are included.
+
+---
+
+### XignAll Rewards — PRO license for unknown tokens
+
+If your hardware token is not yet in XignAll's library, you can help and be rewarded: sign a test document with the token, review exactly what technical data would be sent (no personal data, no documents, no PIN), and confirm. When the test succeeds, the certificate is a qualified eIDAS certificate and the token is not already known, the contribution is approved automatically and a **one-year PRO key** appears in the app. One reward per computer and per network. Available in every edition, including Free.
+
+---
 
 ---
 
@@ -199,6 +225,8 @@ Folder Watch can sign using the organizational SEAL (eSEAL) or a qualified certi
 **Additional features:**
 - Department-isolated signing queues — each subfolder is independent
 - Optional Telegram approval before signing (admin receives notification, replies `/approve` or `/reject`)
+- **Server Journal** — every processed or failed file is logged (signers, status, time), and failed files are recorded with the reason
+- Hidden and temporary files (for example macOS `._` copies or Office `~$` files) are ignored
 - Compatible with shared network drives, NAS, and cloud-synced folders (Google Drive, OneDrive)
 - No API, no cloud dependency, no integration required
 
@@ -269,12 +297,12 @@ In XignAll, the SEAL is applied at the end of a signing workflow, after all indi
 | Single signer profile | ✅ | ✅ | ✅ |
 | PDF Merge + Split | ✅ | ✅ | ✅ |
 | Signature verification | ✅ | ✅ | ✅ |
-| Aria AI chatbot | ✅ | ✅ | ✅ |
 | macOS + Windows + Linux | ✅ | ✅ | ✅ |
 | Bulk folder signing (unlimited) | ❌ | ✅ | ✅ |
 | Unlimited signer profiles | ❌ | ✅ | ✅ |
 | Serial multi-signer workflow | ❌ | ✅ | ✅ |
-| All 9 PDF Tools + Utilities | ❌ | ✅ | ✅ |
+| All 14 PDF Tools + Utilities | ❌ | ✅ | ✅ |
+| Aria assistant, XignAll Rewards | ✅ | ✅ | ✅ |
 | TSA timestamp (RFC 3161) | ❌ | ✅ | ✅ |
 | Up to 3 device activations | ❌ | ✅ | ✅ |
 | Folder Watch — automatic SEAL signing | ❌ | ❌ | ✅ |
@@ -296,7 +324,8 @@ In XignAll, the SEAL is applied at the end of a signing workflow, after all indi
 
 ### PKCS#11 (hardware USB tokens)
 - Compatible with: eToken (SafeNet/Thales), SafeNet iKey, Gemalto, and any PKCS#11-compliant device
-- Auto-detection of installed token drivers on Windows, macOS, Linux
+- Auto-detection of installed token drivers on Windows, macOS, Linux — also run in the background at startup
+- Tokens that store the same certificate twice are handled
 - Token identified by **serial number** — stable across reboots and USB reconnects
 - PIN entered once per session
 
@@ -348,9 +377,9 @@ Pre-built binaries available in the [Releases](https://github.com/LiviuStoica73/
 
 | Platform | File |
 |----------|------|
-| Windows 10/11 | `XignAll-1.3.1-win.msi` |
-| macOS (Universal) | `XignAll-1.3.1-mac.dmg` |
-| Linux x86_64 | `XignAll-1.3.1-linux-x86_64.tar.gz` |
+| Windows 10/11 | `XignAll-1.3.8-win.msi` |
+| macOS (Universal) | `XignAll-1.3.8-mac.dmg` |
+| Linux x86_64 | `XignAll-1.3.8-linux-x86_64.tar.gz` |
 
 A **free edition** with no time limit is available on all three platforms.
 
