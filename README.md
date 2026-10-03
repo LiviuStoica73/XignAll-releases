@@ -2,7 +2,7 @@
 
 **Prepare · Sign · Verify · Automate** — Desktop and server application for distributed electronic signing workflows. Qualified PAdES signatures, organizational SEAL automation, Telegram remote authorization, and batch document processing — entirely within your own infrastructure, without SaaS dependency.
 
-[![Download](https://img.shields.io/badge/Download-v1.3.8-blue?style=flat-square)](https://github.com/LiviuStoica73/XignAll-releases/releases)
+[![Download](https://img.shields.io/badge/Download-v1.3.9-blue?style=flat-square)](https://github.com/LiviuStoica73/XignAll-releases/releases)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=flat-square)]()
 [![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)]()
 
@@ -377,9 +377,9 @@ Pre-built binaries available in the [Releases](https://github.com/LiviuStoica73/
 
 | Platform | File |
 |----------|------|
-| Windows 10/11 | `XignAll-1.3.8-win.msi` |
-| macOS (Universal) | `XignAll-1.3.8-mac.dmg` |
-| Linux x86_64 | `XignAll-1.3.8-linux-x86_64.tar.gz` |
+| Windows 10/11 | `XignAll-1.3.9-win.msi` |
+| macOS (Universal) | `XignAll-1.3.9-mac.dmg` |
+| Linux x86_64 | `XignAll-1.3.9-linux-x86_64.tar.gz` |
 
 A **free edition** with no time limit is available on all three platforms.
 
